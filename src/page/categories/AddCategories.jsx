@@ -1,5 +1,5 @@
-import { Form, Input, message, Modal, Radio, Select, Spin, Upload } from "antd";
-import React, { useState } from "react";
+import { Form, Input, message, Modal, Spin, Upload } from "antd";
+import { useState } from "react";
 import { useAddCategoryMutation } from "../redux/api/categoryApi";
 
 export const AddCategories = ({ openAddModal, setOpenAddModal }) => {

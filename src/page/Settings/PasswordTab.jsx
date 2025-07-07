@@ -1,14 +1,11 @@
-import { Button, Form, Input, message } from "antd";
-import React, { useState } from "react";
-
-import { useNavigate } from "react-router-dom";
+import {  Form, Input, message } from "antd";
+import  { useState } from "react";
 import { useChangePasswordMutation } from "../redux/api/userApi";
 
 export const PasswordTab = () => {
-  const [changePassword] = useChangePasswordMutation();
+  const [changePassword, { isLoading }] = useChangePasswordMutation();
 
   const [passError, setPassError] = useState("");
-  const navigate = useNavigate();
 
   const handlePasswordChange = async (values) => {
     if (values?.newPassword === values.oldPassword) {
@@ -56,7 +53,7 @@ export const PasswordTab = () => {
           label="New Password"
           rules={[{ required: true, message: "Please enter a new password!" }]}
         >
-          <Input.Password  style={{ padding: "9px", borderRadius: "0px" }} placeholder="New Password" />
+          <Input.Password style={{ padding: "9px", borderRadius: "0px" }} placeholder="New Password" />
         </Form.Item>
 
         <Form.Item
@@ -83,9 +80,9 @@ export const PasswordTab = () => {
 
         <Form.Item>
           <div className="flex justify-center">
-          <button type="submit" className="w-full bg-black text-white py-2">
-                Change Password
-              </button>
+            <button type="submit" className="w-full bg-black text-white py-2">
+              {isLoading ? "Loading..." : "Change Password"}
+            </button>
           </div>
         </Form.Item>
       </Form>
